@@ -79,7 +79,7 @@ bindsym $mod+Shift+c reload
 
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to >
+bindsym $mod+Shift+e exec "i3-msg exit"
 
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -111,4 +111,18 @@ bindsym $mod+Return exec kitty
 bindsym $mod+space exec "rofi -modi drun,run -show drun"
 bindsym $mod+Shift+space exec "rofi -show window"
 bindsym $mod+Shift+s exec --no-startup-id "scrcpy --turn-screen-off --stay-awake --power-off-on-close"
-bindsym $mod+Shift+p exec --no-startup-id "sh ~/.config/i3/screenshot.sh"
+#bindsym $mod+Shift+p exec --no-startup-id "sh ~/.config/i3/screenshot.sh"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshot_$(date).jpg"
+bindsym Shift+Print exec --no-startup-id maim -i $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshot_$(date).jpg"
+
+# yay -S backlight_control
+bindsym XF86MonBrightnessUp exec --no-startup-id backlight_control +10
+bindsym XF86MonBrightnessDown exec --no-startup-id backlight_control -10
+
+# pacman -S pamixer
+bindsym XF86AudioRaiseVolume exec pamixer --allow-boost -i 1
+bindsym XF86AudioLowerVolume exec pamixer --allow-boost -d 1
+bindsym XF86AudioMute exec pamixer -t
+
+#bindsym Shift+Left workspace prev
+#bindsym Shift+Right workspace next

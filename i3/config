@@ -1,5 +1,5 @@
 #init and setup
-set $mod Mod4
+set $mod Mod1
 
 font pango:monospace bold 10
 
@@ -28,8 +28,12 @@ set $ws10 "10"
 
 # Border and Colors
 
-default_border pixel 1
-title_align left
+# Enable i3-gaps
+gaps inner 10
+gaps outer 0
+
+default_border pixel 2
+title_align center
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #ff0055 #120b10 #0dcdcd #0dcdcd   #ff0055
@@ -40,15 +44,20 @@ client.placeholder      #120b10 #120b10 #ff0055 #ff0055   #ff0055
 
 client.background       #120b10
 
-exec_always --no-startup-id conkyinit
+exec_always --no-startup-id ~/.config/i3/conkyinit
+exec_always --no-startup-id ~/.config/i3/start_polybar.sh
+
 
 # this is basic bitch stuff, replace if you do it another way
-#exec_always --no-startup-id "picom --vsync --backend glx --daemon"
+exec_always --no-startup-id "picom --vsync --backend glx --daemon --no-fading-openclose"
 #exec_always "feh --bg-fill ~/.config/i3/CyberpunkGirl.jpg"
+# exec_always --no-startup-id feh --bg-fill --geometry=$(xrandr | awk '/\*/ {print $1; exit}') ~/.config/i3/CyberpunkGirl.jpg
+# exec_always --no-startup-id feh --bg-fill --geometry=$(xrandr | awk '/\*/ {print $1; exit}')+0-30 ~/.config/i3/CyberpunkGirl.jpg
+exec_always --no-startup-id nitrogen --restore
+
 
 # I start keepass on boot, if you use keepass keep, otherwise chuck it.
 #exec i3-msg "workspace 10, exec keepassxc"
-
 
 # Optional bar stuff
 #include bar.conf

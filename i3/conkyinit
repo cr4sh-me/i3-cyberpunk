@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if Conky is running
+if pgrep -x "conky" > /dev/null; then
+    echo "Conky is running. Killing..."
+    killall conky
+    sleep 2
+fi
+
+# Start Conky
+echo "Starting Conky..."
+conky &
