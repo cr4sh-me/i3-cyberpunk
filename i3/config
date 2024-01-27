@@ -32,8 +32,10 @@ set $ws10 "10"
 gaps inner 10
 gaps outer 0
 
-default_border pixel 2
 title_align center
+
+default_border pixel 2
+default_floating_border pixel 2
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #ff0055 #120b10 #0dcdcd #0dcdcd   #ff0055
