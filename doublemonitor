@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Log the current date and time
+echo "Script started: $(date)"
+
+# Check for connected monitors
+xrandr --query | grep " connected" | while read -r output; do
+    monitor=$(echo $output | cut -d ' ' -f 1)
+    
+    # Log monitor information
+    echo "Detected monitor: $monitor"
+
+    if [ "$monitor" == "HDMI-1" ]; then
+        # Log when HDMI-1 is detected
+        echo "HDMI-1 detected. Setting up dual monitors."
+
+        xrandr --output eDP-1 --primary --auto --output HDMI-1 --auto --left-of eDP-1
+    else
+        # Log when HDMI-1 is not detected
+        echo "HDMI-1 not detected. Restoring normal configuration."
+
+        xrandr --output eDP-1 --primary --auto --output HDMI-1 --off
+    fi
+done
+
+# Log the end of the script
+echo "Script finished: $(date)"
