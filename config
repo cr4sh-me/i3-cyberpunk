@@ -3,11 +3,8 @@ set $mod Mod1
 
 font pango:monospace bold 10
 
-# Check for connected monitors and set up dual monitors if HDMI-1 is connected
 exec --no-startup-id dex-autostart --autostart --environment i3
-
 exec --no-startup-id nm-applet
-
 exec --no-startup-id xdg-user-dirs-update
 
 floating_modifier $mod
@@ -47,20 +44,17 @@ client.placeholder      #120b10 #120b10 #ff0055 #ff0055   #ff0055
 
 client.background       #120b10
 
-exec_always --no-startup-id ~/.config/i3/doublemonitor
-
+# exec_always --no-startup-id ~/.config/i3/doublemonitor
+exec_always --no-startup-id autorandr --change
 exec_always --no-startup-id ~/.config/i3/start_polybar.sh
-
-# Set wallpaper using feh
-exec_always --no-startup-id feh --bg-fill --geometry=$(xrandr | awk '/\*/ {print $1; exit}') ~/.config/i3/CyberpunkGirl.jpg
-
 exec_always --no-startup-id ~/.config/i3/conkyinit
 
 
 # this is basic bitch stuff, replace if you do it another way
-exec_always --no-startup-id "picom --vsync --backend glx --daemon --no-fading-openclose"
-#exec_always "feh --bg-fill ~/.config/i3/CyberpunkGirl.jpg"
-exec_always --no-startup-id feh --bg-fill --geometry=$(xrandr | awk '/\*/ {print $1; exit}') ~/.config/i3/CyberpunkGirl.jpg
+# exec_always --no-startup-id "picom --vsync --backend glx --daemon --no-fading-openclose"
+exec_always "feh --bg-fill ~/.config/i3/CyberpunkGirl.jpg"
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+#exec_always --no-startup-id feh --bg-fill --geometry=$(xrandr | awk '/\*/ {print $1; exit}') ~/.config/i3/CyberpunkGirl.jpg
 # exec_always --no-startup-id feh --bg-fill --geometry=$(xrandr | awk '/\*/ {print $1; exit}')+0-30 ~/.config/i3/CyberpunkGirl.jpg
 # exec_always --no-startup-id nitrogen --restore
  
